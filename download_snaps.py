@@ -50,7 +50,7 @@ def download_snaps(s):
 while True: 
     if __name__ == '__main__':
         s = Snapchat()
-        s.login('camerons_bot', 'cameronis10')
+        s.login('USERNAME', 'PASSWORD')
         download_snaps(s)
         s.clear_feed()
         time.sleep(25)
