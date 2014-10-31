@@ -1,0 +1,3 @@
+[submodule "snapchat-python"]
+	path = snapchat-python
+	url = https://github.com/niothiel/snapchat-python
