@@ -13,9 +13,6 @@ def download(s, snap):
     """Download a specific snap, given output from s.get_snaps()."""
 
     id = snap['id']
-    name = snap['sender']
-    ts = str(snap['sent']).replace(':', '-')
-
     result = s.get_media(id)
 
     if not result:
@@ -54,4 +51,5 @@ while True:
         download_snaps(s)
         s.clear_feed()
         time.sleep(25)
-
+            """Sleep is added to prevent us from spamming the API. Feel free to set this to a lower or higher value
+                depending on your needs"""
