@@ -3,11 +3,6 @@ import time
 from snapchat import Snapchat
 
 PATH = './snaps/'
-EXTENSIONS = [
-    'jpeg',
-    'jpg',
-    'mp4'
-]
 
 def download(s, snap):
     """Download a specific snap, given output from s.get_snaps()."""
@@ -18,7 +13,6 @@ def download(s, snap):
     if not result:
         return False
 
-    ext = s.is_media(result)
     filename = id + '.jpg'
     path = PATH + filename
     with open(path, 'wb') as fout:
@@ -36,20 +30,19 @@ def download_snaps(s):
         result = download(s, snap)
 
         if not result:
-            print 'FAILED:', id
             break
         else:
             print 'Downloaded:', id
             story_id = s.upload(Snapchat.MEDIA_IMAGE, 'snaps/' + id + '.jpg')
-            time.sleep(4)
+            time.sleep(2)
             s.add_story(story_id, time=3)
 
 while True: 
     if __name__ == '__main__':
         s = Snapchat()
         s.login('USERNAME', 'PASSWORD')
+        """Make sure you change the USERNAME and PASSWORD to the credentials of your bot"""
         download_snaps(s)
         s.clear_feed()
         time.sleep(25)
-            """Sleep is added to prevent us from spamming the API. Feel free to set this to a lower or higher value
-                depending on your needs"""
+
